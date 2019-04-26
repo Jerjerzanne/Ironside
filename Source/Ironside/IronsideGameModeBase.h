@@ -13,5 +13,6 @@ UCLASS()
 class IRONSIDE_API AIronsideGameModeBase : public AGameModeBase
 {
 	GENERATED_BODY()
-	
+public:
+	AIronsideGameModeBase();
 };
