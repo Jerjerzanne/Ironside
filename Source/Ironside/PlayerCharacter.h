@@ -29,4 +29,9 @@ public:
 	void MoveRight(float Value);
 
 	void MoveForward(float Value);
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, category = "MovementProperties")
+		float BaseMovementSpeed;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, category = "MovementProperties")
+		float SprintMovementSpeed;
 };
