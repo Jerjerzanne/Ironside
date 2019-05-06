@@ -27,6 +27,9 @@ public:
 	bool RespondInteract(AActor* Player);
 	bool RespondInteract_Implementation(AActor* Player);
 
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
+	FString InteractMessage();
+	FString InteractMessage_Implementation();
 };
 
 

@@ -37,3 +37,9 @@ bool ABaseInteractable::RespondInteract_Implementation(AActor* Player)
 	return true;
 }
 
+FString ABaseInteractable::InteractMessage_Implementation() 
+{
+	FString Message = "Interact with " + this->GetActorLabel();
+	return Message;
+}
+
