@@ -4,10 +4,12 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "DestructibleCharacter.h"
 #include "PlayerCharacter.generated.h"
 
+
 UCLASS()
-class IRONSIDE_API APlayerCharacter : public ACharacter
+class IRONSIDE_API APlayerCharacter : public ADestructibleCharacter
 {
 	GENERATED_BODY()
 
