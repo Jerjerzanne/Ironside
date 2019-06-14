@@ -3,6 +3,7 @@
 
 #include "PlayerCharacter.h"
 #include "Components/InputComponent.h"
+#include "Runtime/Engine/Classes/Components/SceneComponent.h"
 
 // Sets default values
 APlayerCharacter::APlayerCharacter()
@@ -50,7 +51,7 @@ void APlayerCharacter::MoveForward(float Value)
 	if (Value != 0.0f)
 	{
 		// add movement in that direction
-		AddMovementInput(GetActorForwardVector(), Value);
+		AddMovementInput(FVector(1, 0, 0), Value);
 	}
 }
 
@@ -59,7 +60,7 @@ void APlayerCharacter::MoveRight(float Value)
 	if (Value != 0.0f)
 	{
 		// add movement in that direction
-		AddMovementInput(GetActorRightVector(), Value);
+		AddMovementInput(FVector(0, 1, 0), Value);
 	}
 }
 
