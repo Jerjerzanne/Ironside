@@ -4,6 +4,7 @@
 #include "PlayerCharacter.h"
 #include "Components/InputComponent.h"
 #include "AbilitySystemComponent.h"
+#include "IronsideAttributeSet.h"
 #include "Runtime/Engine/Classes/Components/SceneComponent.h"
 
 // Sets default values
@@ -13,6 +14,7 @@ APlayerCharacter::APlayerCharacter()
 	PrimaryActorTick.bCanEverTick = true;
 	// Our ability system component.
 	AbilitySystem = CreateDefaultSubobject<UAbilitySystemComponent>(TEXT("AbilitySystem"));
+	AttributeSet = CreateDefaultSubobject<UIronsideAttributeSet>(TEXT("AttributeSet"));
 }
 
 // Called when the game starts or when spawned

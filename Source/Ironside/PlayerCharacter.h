@@ -40,6 +40,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Abilities)
 		TSubclassOf<class UGameplayAbility> Ability;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Abilities, meta = (AllowPrivateAccess = "true"))
+	class UIronsideAttributeSet* AttributeSet;
+
 	UAbilitySystemComponent* GetAbilitySystemComponent() const override //We add this function, overriding it from IAbilitySystemInterface.
 	{
 		return AbilitySystem;
