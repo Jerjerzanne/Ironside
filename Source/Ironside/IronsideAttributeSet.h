@@ -32,9 +32,17 @@ public:
 		UPROPERTY(Category = "Attributes", EditAnywhere, ReplicatedUsing = OnRep_Health, BlueprintReadOnly)
 		FGameplayAttributeData Health;
 		ATTRIBUTE_ACCESSORS(UIronsideAttributeSet, Health)
+
+		//Max Health
+		UPROPERTY(Category = "Attributes", EditAnywhere, ReplicatedUsing = OnRep_MaxHealth, BlueprintReadOnly)
+		FGameplayAttributeData MaxHealth;
+		ATTRIBUTE_ACCESSORS(UIronsideAttributeSet, MaxHealth)
 		
 		UFUNCTION()
 		virtual void OnRep_Health();
+
+		UFUNCTION()
+		virtual void OnRep_MaxHealth();
 
 	
 };

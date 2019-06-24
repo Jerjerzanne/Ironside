@@ -7,8 +7,8 @@
 
 UIronsideAttributeSet::UIronsideAttributeSet() 
 {
-	Health.SetBaseValue(100.0f);
-
+	MaxHealth.SetBaseValue(100.0f);
+	Health.SetBaseValue(MaxHealth.GetBaseValue());
 
 }
 
@@ -22,4 +22,9 @@ void UIronsideAttributeSet::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>
 void UIronsideAttributeSet::OnRep_Health()
 {
 	GAMEPLAYATTRIBUTE_REPNOTIFY(UIronsideAttributeSet, Health);
+}
+
+void UIronsideAttributeSet::OnRep_MaxHealth()
+{
+	GAMEPLAYATTRIBUTE_REPNOTIFY(UIronsideAttributeSet, MaxHealth);
 }
