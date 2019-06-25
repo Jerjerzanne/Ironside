@@ -40,6 +40,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Abilities)
 		TSubclassOf<class UGameplayAbility> Ability;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Abilities)
+		TArray<TSubclassOf<class UGameplayAbility>> AbilityArray;
+
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Abilities, meta = (AllowPrivateAccess = "true"))
 	class UIronsideAttributeSet* AttributeSet;
 

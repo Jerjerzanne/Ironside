@@ -27,10 +27,20 @@ void APlayerCharacter::BeginPlay()
 		FGameplayAbilityActorInfo* actorInfo = new FGameplayAbilityActorInfo();
 		actorInfo->InitFromActor(this, this, AbilitySystem);
 		AbilitySystem->AbilityActorInfo = TSharedPtr<FGameplayAbilityActorInfo>(actorInfo);
+		
+		
 
-		if (HasAuthority() && Ability)
+		if (HasAuthority())
 		{
-			AbilitySystem->GiveAbility(FGameplayAbilitySpec(Ability.GetDefaultObject(), 1, 0));
+			//AbilitySystem->GiveAbility(FGameplayAbilitySpec(Ability.GetDefaultObject(), 1, 0));
+			for (size_t i = 0; i < sizeof(AbilityArray); i++)
+			{
+				if (AbilityArray.IsValidIndex(i)) 
+				{
+					AbilitySystem->GiveAbility(FGameplayAbilitySpec(AbilityArray[i].GetDefaultObject(), 1, i));
+				}
+				
+			}
 		}
 		AbilitySystem->InitAbilityActorInfo(this, this);
 	}
