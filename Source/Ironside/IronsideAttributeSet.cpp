@@ -8,7 +8,6 @@
 UIronsideAttributeSet::UIronsideAttributeSet() 
 {
 	MaxHealth.SetBaseValue(100.0f);
-	Health.SetBaseValue(MaxHealth.GetBaseValue());
 
 }
 
