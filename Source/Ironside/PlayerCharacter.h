@@ -8,6 +8,8 @@
 #include "PlayerCharacter.generated.h"
 
 
+
+
 UCLASS()
 class IRONSIDE_API APlayerCharacter : public ACharacter, public IAbilitySystemInterface
 {
@@ -17,6 +19,49 @@ public:
 	// Sets default values for this character's properties
 	APlayerCharacter();
 	virtual void PossessedBy(AController* NewController) override;
+
+	/** Our ability system */
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Abilities, meta = (AllowPrivateAccess = "true"))
+		class UAbilitySystemComponent* AbilitySystem;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Abilities)
+		TSubclassOf<class UGameplayAbility> Ability;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Abilities)
+		TArray<TSubclassOf<class UGameplayAbility>> AbilityArray;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Abilities, meta = (AllowPrivateAccess = "true"))
+		class UIronsideAttributeSet* AttributeSet;
+
+	UAbilitySystemComponent* GetAbilitySystemComponent() const override //We add this function, overriding it from IAbilitySystemInterface.
+	{
+		return AbilitySystem;
+	};
+
+	/*
+	---------------------------
+	GAMEPLAY ABILITY ACCESSORS 
+	---------------------------
+	*/
+
+	/** Returns current health, will be 0 if dead */
+	UFUNCTION(BlueprintCallable)
+		virtual float GetHealth() const;
+
+	/** Returns maximum health, health will never be greater than this */
+	UFUNCTION(BlueprintCallable)
+		virtual float GetMaxHealth() const;
+
+	/*
+	------------------
+	ATTRIBUTES EVENTS
+	-------------------
+	*/
+
+	UFUNCTION(BlueprintImplementableEvent)
+		void OnHealthChanged(float delta);
+
+	void HandleHealthChanged(float delta);
 
 protected:
 	// Called when the game starts or when spawned
@@ -32,25 +77,6 @@ public:
 	void MoveRight(float Value);
 
 	void MoveForward(float Value);
-
-	/** Our ability system */
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Abilities, meta = (AllowPrivateAccess = "true"))
-		class UAbilitySystemComponent* AbilitySystem;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Abilities)
-		TSubclassOf<class UGameplayAbility> Ability;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Abilities)
-		TArray<TSubclassOf<class UGameplayAbility>> AbilityArray;
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Abilities, meta = (AllowPrivateAccess = "true"))
-	class UIronsideAttributeSet* AttributeSet;
-
-	UAbilitySystemComponent* GetAbilitySystemComponent() const override //We add this function, overriding it from IAbilitySystemInterface.
-	{
-		return AbilitySystem;
-	};
-
 	
 	
 };

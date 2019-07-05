@@ -4,12 +4,14 @@
 #include "IronsideAttributeSet.h"
 #include "UnrealNetwork.h"
 #include "PlayerCharacter.h"
+#include "GameplayEffect.h"
+#include "GameplayEffectExtension.h"
 
 
 UIronsideAttributeSet::UIronsideAttributeSet() 
 {
 	MaxHealth.SetBaseValue(100.0f);
-
+	MaxHealth.SetCurrentValue(100.0f);
 }
 
 void UIronsideAttributeSet::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
@@ -43,9 +45,39 @@ void UIronsideAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCa
 	{
 		TargetActor = Data.Target.AbilityActorInfo->AvatarActor.Get();
 		TargetController = Data.Target.AbilityActorInfo->PlayerController.Get();
-		TargetCharacter = Cast<ARPGCharacterBase>(TargetActor);
+		TargetCharacter = Cast<APlayerCharacter>(TargetActor);
 	}
 
+	// Get the Source actor
+	AActor* AttackingActor = nullptr;
+	AController* AttackingController = nullptr;
+	AController* AttackingPlayerController = nullptr;
+	if (Source && Source->AbilityActorInfo.IsValid() && Source->AbilityActorInfo->AvatarActor.IsValid())
+	{
+		AttackingActor = Source->AbilityActorInfo->AvatarActor.Get();
+		AttackingController = Source->AbilityActorInfo->PlayerController.Get();
+		AttackingPlayerController = Source->AbilityActorInfo->PlayerController.Get();
+		if (AttackingController == nullptr && AttackingActor != nullptr)
+		{
+			if (APawn * Pawn = Cast<APawn>(AttackingActor))
+			{
+				AttackingController = Pawn->GetController();
+			}
+		}
+	}
+
+	if (Data.EvaluatedData.Attribute == GetHealthAttribute())
+	{
+		// Handle other health changes such as from healing or direct modifiers
+		// First clamp it
+		SetHealth(FMath::Clamp(GetHealth(), 0.0f, GetMaxHealth()));
+
+		if (TargetCharacter)
+		{
+			// Call for all health changes
+			TargetCharacter->HandleHealthChanged(DeltaValue);
+		}
+	}
 }
 
 void UIronsideAttributeSet::OnRep_Health()
