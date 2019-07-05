@@ -27,6 +27,7 @@ public:
 
 		UIronsideAttributeSet();
 		virtual void GetLifetimeReplicatedProps(TArray< FLifetimeProperty >& OutLifetimeProps) const override;
+		virtual void PostGameplayEffectExecute(const FGameplayEffectModCallbackData& Data) override;
 
 		//Current Health
 		UPROPERTY(Category = "Attributes", EditAnywhere, ReplicatedUsing = OnRep_Health, BlueprintReadOnly)

@@ -7,6 +7,13 @@
 #include "IronsideAttributeSet.h"
 #include "Runtime/Engine/Classes/Components/SceneComponent.h"
 
+
+/*
+-----------------------------
+BEGIN PLAY, TICK AND CONSTRUCTOR
+-----------------------------
+*/
+
 // Sets default values
 APlayerCharacter::APlayerCharacter()
 {
@@ -53,6 +60,12 @@ void APlayerCharacter::Tick(float DeltaTime)
 
 }
 
+/*
+-------------------------------
+MANAGING INPUTS FOR MOVEMENT AND ABILITIES
+-------------------------------
+*/
+
 // Called to bind functionality to input
 void APlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
@@ -89,6 +102,22 @@ void APlayerCharacter::MoveRight(float Value)
 	}
 }
 
+/*
+------------------------------
+GAMEPLAY ABILITY FUNCTIONS
+------------------------------
+*/
+
+float APlayerCharacter::GetHealth() const
+{
+	return AttributeSet->GetHealth();
+}
+
+float APlayerCharacter::GetMaxHealth() const
+{
+	return AttributeSet->GetMaxHealth();
+}
+
 void APlayerCharacter::PossessedBy(AController* NewController)
 {
 	Super::PossessedBy(NewController);
@@ -96,4 +125,8 @@ void APlayerCharacter::PossessedBy(AController* NewController)
 	AbilitySystem->RefreshAbilityActorInfo();
 }
 
+void APlayerCharacter::HandleHealthChanged(float delta) 
+{
+	OnHealthChanged(delta);
+}
 
