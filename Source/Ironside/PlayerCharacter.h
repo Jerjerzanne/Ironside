@@ -52,6 +52,10 @@ public:
 	UFUNCTION(BlueprintCallable)
 		virtual float GetMaxHealth() const;
 
+	/** Return movement speed */
+	UFUNCTION(BlueprintCallable)
+		virtual float GetMovementSpeed() const;
+
 	/*
 	------------------
 	ATTRIBUTES EVENTS
@@ -59,9 +63,15 @@ public:
 	*/
 
 	UFUNCTION(BlueprintImplementableEvent)
-		void OnHealthChanged(float delta);
+	void OnHealthChanged(float delta);
 
 	void HandleHealthChanged(float delta);
+
+	UFUNCTION(BlueprintImplementableEvent)
+		void OnMovementSpeedChanged(float delta);
+
+	void HandleHandleMovementSpeedChanged(float delta);
+
 
 protected:
 	// Called when the game starts or when spawned

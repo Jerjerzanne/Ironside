@@ -38,12 +38,20 @@ public:
 		UPROPERTY(Category = "Attributes", EditAnywhere, ReplicatedUsing = OnRep_MaxHealth, BlueprintReadOnly)
 		FGameplayAttributeData MaxHealth;
 		ATTRIBUTE_ACCESSORS(UIronsideAttributeSet, MaxHealth)
+
+		//Movement Speed
+		UPROPERTY(Category = "Attributes", EditAnywhere, ReplicatedUsing = OnRep_MovementSpeed, BlueprintReadOnly)
+		FGameplayAttributeData MovementSpeed;
+		ATTRIBUTE_ACCESSORS(UIronsideAttributeSet, MovementSpeed)
 		
 		UFUNCTION()
 		virtual void OnRep_Health();
 
 		UFUNCTION()
 		virtual void OnRep_MaxHealth();
+
+		UFUNCTION()
+		virtual void OnRep_MovementSpeed();
 
 	
 };

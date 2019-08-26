@@ -12,6 +12,8 @@ UIronsideAttributeSet::UIronsideAttributeSet()
 {
 	MaxHealth.SetBaseValue(100.0f);
 	MaxHealth.SetCurrentValue(100.0f);
+	MovementSpeed.SetBaseValue(1.0f);
+	MovementSpeed.SetCurrentValue(1.0f);
 }
 
 void UIronsideAttributeSet::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
@@ -88,4 +90,9 @@ void UIronsideAttributeSet::OnRep_Health()
 void UIronsideAttributeSet::OnRep_MaxHealth()
 {
 	GAMEPLAYATTRIBUTE_REPNOTIFY(UIronsideAttributeSet, MaxHealth);
+}
+
+void UIronsideAttributeSet::OnRep_MovementSpeed()
+{
+	GAMEPLAYATTRIBUTE_REPNOTIFY(UIronsideAttributeSet, MovementSpeed);
 }

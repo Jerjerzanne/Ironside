@@ -118,6 +118,12 @@ float APlayerCharacter::GetMaxHealth() const
 	return AttributeSet->GetMaxHealth();
 }
 
+
+float APlayerCharacter::GetMovementSpeed() const
+{
+	return AttributeSet->GetMovementSpeed();
+}
+
 void APlayerCharacter::PossessedBy(AController* NewController)
 {
 	Super::PossessedBy(NewController);
@@ -129,4 +135,10 @@ void APlayerCharacter::HandleHealthChanged(float delta)
 {
 	OnHealthChanged(delta);
 }
+
+void APlayerCharacter::HandleHandleMovementSpeedChanged(float delta)
+{
+	OnMovementSpeedChanged(delta);
+}
+
 
