@@ -143,7 +143,8 @@ void APlayerCharacter::HandleHandleMovementSpeedChanged(float delta)
 
 void APlayerCharacter::GetAbilityCooldown()
 {
-	
+	//FGameplayEffectQuery const Query = FGameplayEffectQuery::MakeQuery_MatchAnyOwningTags(CooldownTags);
+	//TArray<TPair<float, float>> TimeRemainingDuration = AbilitySystem->GetActiveEffectsTimeRemainingAndDuration();
 	for (size_t i = 0; i < sizeof(AbilityArray); i++)
 	{
 		if (AbilityArray.IsValidIndex(i))
@@ -151,6 +152,7 @@ void APlayerCharacter::GetAbilityCooldown()
 			UGameplayEffect* effect = AbilityArray[i].GetDefaultObject()->GetCooldownGameplayEffect();
 			if (effect != NULL)
 			{
+				FGameplayTagContainer* EffectCooldownTag = &effect->InheritableOwnedTagsContainer.CombinedTags;
 				GEngine->AddOnScreenDebugMessage(-1, 0.0f, FColor::Yellow, effect->GetName());
 			}
 		}
