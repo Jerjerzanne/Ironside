@@ -87,6 +87,10 @@ public:
 	void MoveRight(float Value);
 
 	void MoveForward(float Value);
+
+	UFUNCTION(BlueprintCallable)
+		void GetAbilityCooldown();
+
 	
 	
 };

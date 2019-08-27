@@ -46,7 +46,6 @@ void APlayerCharacter::BeginPlay()
 				{
 					AbilitySystem->GiveAbility(FGameplayAbilitySpec(AbilityArray[i].GetDefaultObject(), 1, i));
 				}
-				
 			}
 		}
 		AbilitySystem->InitAbilityActorInfo(this, this);
@@ -142,3 +141,19 @@ void APlayerCharacter::HandleHandleMovementSpeedChanged(float delta)
 }
 
 
+void APlayerCharacter::GetAbilityCooldown()
+{
+	
+	for (size_t i = 0; i < sizeof(AbilityArray); i++)
+	{
+		if (AbilityArray.IsValidIndex(i))
+		{
+			UGameplayEffect* effect = AbilityArray[i].GetDefaultObject()->GetCooldownGameplayEffect();
+			if (effect != NULL)
+			{
+				GEngine->AddOnScreenDebugMessage(-1, 0.0f, FColor::Yellow, effect->GetName());
+			}
+		}
+	}
+	
+}
