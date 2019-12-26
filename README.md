@@ -23,4 +23,4 @@ The current master branch of this project runs locally.
 - Unreal's Steam Online Subsystem
 
 # Media 
-Check out the latest demo on [Youtube](https://youtu.be/fiLagBokzlk).
+Check out the latest demo on [Youtube](https://youtu.be/oBIxtz-Vf-U).
